@@ -1,0 +1,152 @@
+/* Animation styles for cyberpunk theme */
+
+/* Pulse animation for analysis */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes stepActivation {
+  0% {
+    opacity: 0.3;
+    transform: translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Analysis status container */
+.analysis-status {
+  margin-top: 30px;
+  padding: 20px;
+  background: rgba(10, 25, 47, 0.7);
+  border-radius: 10px;
+  border: 1px solid var(--cyberpunk-magenta);
+  color: var(--cyberpunk-text);
+  position: relative;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.analysis-status p {
+  text-align: center;
+  margin: 15px 0;
+  font-weight: 500;
+  color: var(--cyberpunk-cyan);
+}
+
+.pulse-effect {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 10px;
+  box-shadow: 0 0 15px var(--cyberpunk-magenta);
+  opacity: 0.5;
+  animation: pulse 2s infinite ease-in-out;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.analysis-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.analysis-steps .step {
+  padding: 8px 15px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.analysis-steps .step::before {
+  content: "⏱";
+  margin-right: 8px;
+  opacity: 0.7;
+}
+
+.analysis-steps .step.active {
+  background: rgba(255, 0, 255, 0.15);
+  color: var(--cyberpunk-text);
+  border-left: 3px solid var(--cyberpunk-magenta);
+  animation: stepActivation 0.5s forwards;
+}
+
+.analysis-steps .step.active::before {
+  content: "⚡";
+  opacity: 1;
+  color: var(--cyberpunk-yellow);
+}
+
+.analysis-steps .step.completed {
+  background: rgba(0, 255, 255, 0.1);
+  color: var(--cyberpunk-text);
+  border-left: 3px solid var(--cyberpunk-cyan);
+}
+
+.analysis-steps .step.completed::before {
+  content: "✓";
+  color: var(--cyberpunk-green);
+}
+
+/* Upload file styling with cyberpunk theme */
+.cyberpunk-upload {
+  border: 2px dashed var(--cyberpunk-cyan);
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+  background: rgba(0, 255, 255, 0.05);
+  margin-top: 30px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.cyberpunk-upload:hover {
+  background: rgba(0, 255, 255, 0.1);
+  border-color: var(--cyberpunk-magenta);
+}
+
+.cyberpunk-upload p {
+  color: var(--cyberpunk-text);
+  margin: 15px 0;
+}
+
+.upload-icon {
+  color: var(--cyberpunk-cyan);
+  margin-bottom: 10px;
+}
+
+.file-name {
+  margin-top: 15px;
+  padding: 8px 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  display: inline-block;
+  color: var(--cyberpunk-yellow);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

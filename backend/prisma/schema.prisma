@@ -1,0 +1,116 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DIRECT_URL")
+}
+
+// Models for VibelyTube application
+
+model User {
+  id          Int      @id @default(autoincrement())
+  googleId    String   @unique
+  email       String   @unique
+  name        String
+  avatar      String?
+  lastLogin   DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  chats       Chat[]
+  deviceUsage DeviceUsage[]
+  analyses    Analysis[]
+  dailyCredits DailyCredit[]
+
+  @@map("users")
+}
+
+model DeviceUsage {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  deviceId   String   // Device fingerprint or IP
+  usageCount Int      @default(0)
+  lastUsed   DateTime @default(now())
+  createdAt  DateTime @default(now())
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, deviceId])
+  @@map("device_usage")
+}
+
+model Video {
+  id          String   @id @default(cuid())
+  youtubeId   String   @unique
+  title       String
+  description String?
+  thumbnail   String?
+  duration    Int?     // in seconds
+  url         String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  chats Chat[]
+  analyses Analysis[]
+
+  @@map("videos")
+}
+
+model Chat {
+  id        String   @id @default(cuid())
+  videoId   String
+  sessionId String   // Simple session identifier without user association
+  userId    Int?     // Optional user association
+  message   String
+  response  String?
+  createdAt DateTime @default(now())
+
+  // Relations
+  video Video @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  user  User?  @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@map("chats")
+}
+
+model Analysis {
+  id         String   @id @default(cuid())
+  userId     Int
+  videoId    String
+  sessionId  String
+  title      String
+  duration   Int?     // Video duration in seconds
+  createdAt  DateTime @default(now())
+
+  // Relations
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  video Video @relation(fields: [videoId], references: [id], onDelete: Cascade)
+
+  @@map("analyses")
+}
+
+model DailyCredit {
+  id            String   @id @default(cuid())
+  userId        Int
+  date          DateTime @default(now()) @db.Date
+  analysisCount Int      @default(0)
+  maxAnalysis   Int      @default(2)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, date])
+  @@map("daily_credits")
+}

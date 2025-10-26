@@ -1,0 +1,282 @@
+import React, { useState, FormEvent, KeyboardEvent } from 'react';
+import { Search, CheckCircle, Clock, Brain, Mail } from 'lucide-react';
+import './vibelytube.css';
+
+interface HomePageProps {
+  onStartClick: () => void;
+}
+
+const HomePage: React.FC<HomePageProps> = ({ onStartClick }) => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+
+  const handleSearch = (e: FormEvent) => {
+    e.preventDefault();
+    if (!searchQuery.trim()) return;
+    
+    setIsAnalyzing(true);
+    
+    // Simulate API call
+    setTimeout(() => {
+      setIsAnalyzing(false);
+      onStartClick(); // Navigate to results component
+    }, 1000);
+  };
+  
+  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch(e);
+    }
+  };
+  
+  const handleSelectPlan = (planId: string) => {
+    console.log(`Selected plan: ${planId}`);
+    // Here you would implement subscription flow
+    onStartClick();
+  };
+    if (e.key === 'Enter' && searchQuery.trim()) {
+      handleSearch(e as unknown as React.FormEvent);
+    }
+  };
+  
+  const handleSelectPlan = (planId: string) => {
+    setSelectedPlan(planId);
+    // In a real app, this would navigate to checkout or registration
+    alert(`Plan ${planId} selected! In a real app, this would navigate to checkout.`);
+  };
+  
+  const handleFileClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+  
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      // Handle file upload logic here
+      alert("File upload feature would be implemented here!");
+    }
+  };
+
+  return (
+    <div className="vibelytube-home">
+      {/* Header */}
+      <header className="header">
+        <div className="logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2"/>
+            <path d="M10 8L16 12L10 16V8Z" fill="currentColor"/>
+          </svg>
+          <span>VibelyTube</span>
+        </div>
+        <nav className="main-nav">
+          <a href="#beranda" className="active">Beranda</a>
+          <a href="#jelajahi">Jelajahi Topik</a>
+          <a href="#cara-kerja">Cara Kerja</a>
+          <a href="#harga">Harga</a>
+        </nav>
+        <div className="auth-buttons">
+          <button className="btn btn-secondary">Masuk</button>
+          <button className="btn btn-primary">Daftar</button>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="hero-section">
+        <div className="hero-content">
+          <h1>Temukan Penketahuan Baru, <br />Lebih Cepat</h1>
+          <form onSubmit={handleSearch} className="search-container">
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Apa yang ingin Anda pelajari hari ini?"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyPress={handleKeyPress}
+              disabled={isAnalyzing}
+            />
+            <button 
+              type="submit"
+              className={`search-button ${isAnalyzing ? 'loading' : ''}`}
+              disabled={isAnalyzing || !searchQuery.trim()}
+            >
+              {isAnalyzing ? 'Mencari...' : 'Cari'}
+            </button>
+          </form>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="features-section" id="fitur-utama">
+        <h2>Fitur Utama</h2>
+        <div className="feature-cards">
+          <div className="feature-card">
+            <div className="feature-icon">
+              <Search size={32} />
+            </div>
+            <h3>Pencarian Cerdas</h3>
+            <p>Temukan info dengan tepat</p>
+          </div>
+          <div className="feature-card">
+            <div className="feature-icon">
+              <Clock size={32} />
+            </div>
+            <h3>Waktu Hemat</h3>
+            <p>Dapatkan rangkuman otomatis</p>
+          </div>
+          <div className="feature-card">
+            <div className="feature-icon">
+              <Brain size={32} />
+            </div>
+            <h3>Pembelajaran Aktif</h3>
+            <p>Diskusi interaktif langsung</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Topics Section */}
+      <section className="topics-section" id="jelajahi">
+        <h2>Topik Teratas</h2>
+        <div className="testimonial">
+          <blockquote>
+            "Pembelajaran terbaik terjadi ketika kita memahami konteks dan melihat gambar besarnya."
+          </blockquote>
+        </div>
+        <div className="topic-cards">
+          <div className="topic-card" style={{ backgroundColor: '#5D5FEF20' }}>
+            <div className="topic-bubble" style={{ backgroundColor: '#5D5FEF' }}></div>
+            <h3>Teknologi</h3>
+          </div>
+          <div className="topic-card" style={{ backgroundColor: '#EF5DA820' }}>
+            <div className="topic-bubble" style={{ backgroundColor: '#EF5DA8' }}></div>
+            <h3>Bisnis</h3>
+          </div>
+          <div className="topic-card" style={{ backgroundColor: '#5DEFBC20' }}>
+            <div className="topic-bubble" style={{ backgroundColor: '#5DEFBC' }}></div>
+            <h3>Sains</h3>
+          </div>
+          <div className="topic-card" style={{ backgroundColor: '#5D9DEF20' }}>
+            <div className="topic-bubble" style={{ backgroundColor: '#5D9DEF' }}></div>
+            <h3>Musik</h3>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonial Section */}
+      <section className="testimonial-section">
+        <h2>Testimoni Pengguna</h2>
+        <div className="testimonial-container">
+          <div className="testimonial-card">
+            <div className="testimonial-header">
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User" />
+              <span>@sinta_wijaya</span>
+            </div>
+            <p>
+              "Fitur pencarian cerdas sangat membantu saya menemukan materi pembelajaran dengan cepat. Sangat direkomendasikan!"
+            </p>
+          </div>
+          <div className="testimonial-card">
+            <div className="testimonial-header">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" />
+              <span>@bagus_pratama</span>
+            </div>
+            <p>
+              "Rangkuman otomatis menghemat waktu saya. Sekarang saya bisa belajar lebih banyak dalam waktu yang lebih singkat."
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section className="pricing-section" id="harga">
+        <h2>Pilihan Harga</h2>
+        <div className="pricing-container">
+          <div className="pricing-card">
+            <div className="pricing-header">
+              <h3>Freemium</h3>
+              <p className="price">Rp 50.000</p>
+              <p className="billing-cycle">/bulan</p>
+            </div>
+            <ul className="pricing-features">
+              <li><CheckCircle size={16} /> Akses konten terbatas</li>
+              <li><CheckCircle size={16} /> Fitur dasar</li>
+              <li><CheckCircle size={16} /> Waktu terbatas</li>
+            </ul>
+            <button 
+              className="pricing-button"
+              onClick={() => handleSelectPlan('freemium')}
+            >
+              Pilih Paket
+            </button>
+          </div>
+          
+          <div className="pricing-card recommended">
+            <div className="pricing-header">
+              <h3>Pro</h3>
+              <p className="price">Rp 150.000</p>
+              <p className="billing-cycle">/bulan</p>
+            </div>
+            <ul className="pricing-features">
+              <li><CheckCircle size={16} /> Akses konten penuh</li>
+              <li><CheckCircle size={16} /> Semua fitur premium</li>
+              <li><CheckCircle size={16} /> Akses tak terbatas</li>
+              <li><CheckCircle size={16} /> Dukungan prioritas</li>
+            </ul>
+            <button 
+              className="pricing-button"
+              onClick={() => handleSelectPlan('pro')}
+            >
+              Pilih Paket
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="footer">
+        <div className="footer-content">
+          <div className="footer-column">
+            <h4>Beranda</h4>
+            <ul>
+              <li><a href="#fitur-utama">Fitur Utama</a></li>
+              <li><a href="#jelajahi">Jelajahi Topik</a></li>
+              <li><a href="#harga">Harga</a></li>
+            </ul>
+          </div>
+          <div className="footer-column">
+            <h4>Akun</h4>
+            <ul>
+              <li><a href="#masuk">Masuk</a></li>
+              <li><a href="#daftar">Daftar</a></li>
+            </ul>
+          </div>
+          <div className="footer-column">
+            <h4>Perusahaan</h4>
+            <ul>
+              <li><a href="#tentang">Tentang Kami</a></li>
+              <li><a href="#kontak">Kontak</a></li>
+              <li><a href="#karir">Karir</a></li>
+            </ul>
+          </div>
+          <div className="footer-column">
+            <h4>Berlangganan Newsletter</h4>
+            <div className="newsletter-form">
+              <input type="email" placeholder="Alamat email Anda" />
+              <button><Mail size={16} /></button>
+            </div>
+            <div className="social-icons">
+              <a href="#twitter" className="social-icon">T</a>
+              <a href="#facebook" className="social-icon">F</a>
+              <a href="#instagram" className="social-icon">I</a>
+            </div>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>&copy; 2025 VibelyTube. Hak Cipta Dilindungi.</p>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default HomePage;

@@ -1,0 +1,745 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Nunito', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f6f6f6;
+  color: #333;
+  position: relative;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  background: white;
+  position: relative;
+  border-top: 8px solid #ff7800;
+  border-bottom: 8px solid #ff7800;
+}
+
+/* Roblox-inspired styles */
+.roblox-container {
+  padding: 0;
+  position: relative;
+  width: 100%;
+}
+
+/* Roblox Learning Hub Styles */
+.roblox-learning-hub {
+  width: 100%;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero Section */
+.roblox-hero-section {
+  min-height: 600px;
+  padding: 40px 20px;
+  background: linear-gradient(to bottom, #00a2ff, #0073e6);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.roblox-hero-section:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="20" y="20" width="25" height="25" rx="5" fill="white" opacity="0.1"/><rect x="60" y="60" width="20" height="20" rx="5" fill="white" opacity="0.1"/><rect x="70" y="10" width="15" height="15" rx="4" fill="white" opacity="0.1"/><rect x="10" y="70" width="30" height="20" rx="5" fill="white" opacity="0.1"/></svg>');
+  background-size: 200px 200px;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.roblox-hero-content {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.roblox-main-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: white;
+  text-align: center;
+  margin-bottom: 40px;
+  text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+  line-height: 1.2;
+  max-width: 800px;
+}
+
+.roblox-characters {
+  display: flex;
+  justify-content: center;
+  gap: 300px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.roblox-character {
+  width: 120px;
+  height: 120px;
+  border-radius: 16px;
+  border: 4px solid white;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+.roblox-character.left {
+  transform: rotate(-5deg) translateY(-10px);
+}
+
+.roblox-character.right {
+  transform: rotate(5deg) translateY(-10px);
+}
+
+.roblox-search-container {
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  position: relative;
+}
+
+.roblox-search-input {
+  flex: 1;
+  height: 70px;
+  padding: 0 30px;
+  border-radius: 35px;
+  border: none;
+  font-size: 1.2rem;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  font-family: 'Nunito', sans-serif;
+}
+
+.roblox-search-button {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #ff7800;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.roblox-search-button:hover {
+  transform: scale(1.05);
+  background: #ff9500;
+}
+
+.roblox-search-button:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Section Styling */
+.roblox-section {
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.roblox-section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #00a2ff;
+  margin-bottom: 40px;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+}
+
+.roblox-section-title:after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 4px;
+  background: #ff7800;
+  border-radius: 2px;
+}
+
+/* Testimonial Section */
+.roblox-testimonial-section {
+  background: white;
+}
+
+.roblox-testimonial-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.roblox-testimonial-card {
+  padding: 25px;
+  background: #f6f6f6;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.roblox-testimonial-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.roblox-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid #00a2ff;
+  object-fit: cover;
+}
+
+.roblox-username {
+  margin-left: 12px;
+  font-weight: 700;
+  color: #00a2ff;
+  font-size: 1.1rem;
+}
+
+.roblox-testimonial-text {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* Features Section */
+.roblox-features-section {
+  background: #eaf6ff;
+  padding: 80px 20px;
+}
+
+.roblox-features-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+@media (min-width: 992px) {
+  .roblox-features-container {
+    flex-direction: row;
+  }
+}
+
+.roblox-chat-panel {
+  flex: 1;
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.roblox-chat-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.roblox-chat-message.user {
+  flex-direction: row-reverse;
+}
+
+.roblox-chat-icon {
+  font-size: 24px;
+  background: #00a2ff;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.roblox-chat-bubble {
+  background: #f0f0f0;
+  padding: 15px;
+  border-radius: 16px;
+  max-width: 80%;
+}
+
+.roblox-chat-message.ai .roblox-chat-bubble {
+  background: #e1f5fe;
+  border-top-left-radius: 4px;
+}
+
+.roblox-chat-message.user .roblox-chat-bubble {
+  background: #ffebcc;
+  border-top-right-radius: 4px;
+}
+
+.roblox-video-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.roblox-video-player {
+  aspect-ratio: 16/9;
+  background: #222;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  border: 4px solid white;
+}
+
+.roblox-video-info {
+  margin-top: 16px;
+}
+
+.roblox-video-info h3 {
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+}
+
+/* Upload Section */
+.roblox-upload-section {
+  background: white;
+  background-image: linear-gradient(135deg, #ff78001a 25%, transparent 25%), 
+                    linear-gradient(225deg, #ff78001a 25%, transparent 25%), 
+                    linear-gradient(45deg, #ff78001a 25%, transparent 25%), 
+                    linear-gradient(315deg, #ff78001a 25%, #ffffff 25%);
+  background-position: 40px 0, 40px 0, 0 0, 0 0;
+  background-size: 80px 80px;
+  background-repeat: repeat;
+}
+
+.roblox-upload-container {
+  background: white;
+  border: 3px dashed #00a2ff;
+  border-radius: 16px;
+  padding: 50px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+  max-width: 600px;
+}
+
+.roblox-upload-container:hover {
+  background: #f0f8ff;
+  transform: translateY(-5px);
+}
+
+.roblox-file-name {
+  font-weight: 700;
+  color: #00a2ff;
+}
+
+/* Benefits Section */
+.roblox-benefits-section {
+  background: #f6f6f6;
+}
+
+.roblox-benefits-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+  max-width: 900px;
+}
+
+.roblox-benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.roblox-benefit-icon {
+  background: #00a2ff;
+  color: white;
+  width: 70px;
+  height: 70px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 0 #0073e6;
+}
+
+.roblox-benefit-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #ff7800;
+}
+
+.roblox-benefit-content p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+/* Pricing Section */
+.roblox-pricing-section {
+  background: white;
+}
+
+.roblox-pricing-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+@media (min-width: 992px) {
+  .roblox-pricing-container {
+    flex-direction: row;
+  }
+}
+
+.roblox-pricing-card {
+  flex: 1;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.roblox-pricing-header {
+  padding: 25px;
+  text-align: center;
+}
+
+.roblox-pricing-card.noob .roblox-pricing-header {
+  background: #f0f0f0;
+}
+
+.roblox-pricing-card.pro .roblox-pricing-header {
+  background: #00a2ff;
+  color: white;
+}
+
+.roblox-pricing-card.legend .roblox-pricing-header {
+  background: linear-gradient(135deg, #ffb700, #ff7800);
+  color: white;
+}
+
+.roblox-pricing-header h3 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.roblox-price {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.roblox-price span {
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.roblox-pricing-features {
+  list-style: none;
+  padding: 25px;
+  flex: 1;
+}
+
+.roblox-pricing-features li {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  padding-left: 25px;
+}
+
+.roblox-pricing-features li:before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #00a2ff;
+  font-weight: bold;
+}
+
+.roblox-pricing-button {
+  margin: 0 25px 25px;
+  padding: 15px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.roblox-pricing-card.noob .roblox-pricing-button {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.roblox-pricing-card.pro .roblox-pricing-button {
+  background: #00a2ff;
+  color: white;
+}
+
+.roblox-pricing-card.legend .roblox-pricing-button {
+  background: #ff7800;
+  color: white;
+}
+
+.roblox-pricing-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+/* Final CTA Section */
+.roblox-final-cta {
+  background: linear-gradient(to bottom, #00a2ff, #0073e6);
+  color: white;
+  position: relative;
+  overflow: hidden;
+  padding: 100px 20px;
+}
+
+.roblox-final-cta:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="20" y="20" width="25" height="25" rx="5" fill="white" opacity="0.1"/><rect x="60" y="60" width="20" height="20" rx="5" fill="white" opacity="0.1"/><rect x="70" y="10" width="15" height="15" rx="4" fill="white" opacity="0.1"/><rect x="10" y="70" width="30" height="20" rx="5" fill="white" opacity="0.1"/></svg>');
+  background-size: 200px 200px;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.roblox-final-cta .roblox-section-title {
+  color: white;
+  z-index: 1;
+}
+
+.roblox-final-cta .roblox-section-title:after {
+  background: white;
+}
+
+.roblox-final-cta .roblox-analyze-button {
+  background: #ff7800;
+  font-size: 1.5rem;
+  padding: 20px 50px;
+  z-index: 1;
+  position: relative;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .roblox-main-title {
+    font-size: 2.5rem;
+  }
+  
+  .roblox-characters {
+    gap: 150px;
+  }
+  
+  .roblox-character {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .roblox-section-title {
+    font-size: 2rem;
+  }
+  
+  .roblox-benefit-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+/* Existing Styles for Animation */
+.speech-bubble.animated {
+  animation: bubble-pop 0.5s ease-out;
+}
+
+@keyframes bubble-pop {
+  0% { transform: scale(0.5); opacity: 0; }
+  70% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.speech-text {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.speech-emoji {
+  font-size: 1.2rem;
+}
+
+/* Video examples */
+.video-examples-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.video-thumbnail {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 3px solid #00a2ff;
+}
+
+.video-thumbnail:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.video-thumbnail img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.video-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.video-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.video-duration {
+  background: #ff7800;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.video-preview {
+  background: #f0f8ff;
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.video-preview:hover {
+  background: #e0f0ff;
+  transform: translateY(-2px);
+}
+
+.roblox-header {
+  background: #ff7800;
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.roblox-header h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  font-weight: 800;
+  text-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+}
+
+.roblox-header p {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.roblox-footer {
+  background: #ff7800;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-weight: 600;
+}

@@ -1,0 +1,309 @@
+/* BelajarBot Styles */
+.belajarbot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 350px;
+  height: 500px;
+  background: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* Header */
+.belajarbot-header {
+  background: #F0F0F0;
+  padding: 12px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.belajarbot-identity {
+  display: flex;
+  align-items: center;
+}
+
+.belajarbot-avatar {
+  width: 36px;
+  height: 36px;
+  background: #00a2ff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  font-size: 22px;
+}
+
+.belajarbot-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.belajarbot-name {
+  font-weight: 700;
+  color: #333;
+  font-size: 1rem;
+}
+
+.belajarbot-status {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.belajarbot-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.belajarbot-button {
+  background: none;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.belajarbot-button:hover {
+  background: #E0E0E0;
+}
+
+/* Chat Body */
+.belajarbot-body {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.belajarbot-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  max-width: 85%;
+}
+
+.belajarbot-bot {
+  align-self: flex-start;
+}
+
+.belajarbot-user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.belajarbot-avatar-small {
+  width: 30px;
+  height: 30px;
+  background: #00a2ff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.belajarbot-bubble {
+  padding: 12px;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  position: relative;
+}
+
+.belajarbot-bot .belajarbot-bubble {
+  background: #E5E5E5;
+  color: #333;
+  border-top-left-radius: 4px;
+}
+
+.belajarbot-user .belajarbot-bubble {
+  background: #00a2ff;
+  color: white;
+  border-top-right-radius: 4px;
+}
+
+/* Timestamp styling */
+.belajarbot-timestamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(0, 162, 255, 0.1);
+  color: #00a2ff;
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin-top: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.belajarbot-timestamp:hover {
+  background: rgba(0, 162, 255, 0.2);
+}
+
+/* Typing indicator */
+.belajarbot-typing {
+  min-width: 50px;
+  min-height: 24px;
+}
+
+.belajarbot-typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.belajarbot-typing-dot {
+  width: 8px;
+  height: 8px;
+  background: #777;
+  border-radius: 50%;
+  animation: typing-bounce 1.4s infinite ease-in-out both;
+}
+
+.belajarbot-typing-dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.belajarbot-typing-dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes typing-bounce {
+  0%, 80%, 100% {
+    transform: scale(0.6);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+/* Quick Actions */
+.belajarbot-quick-actions {
+  display: flex;
+  gap: 10px;
+  padding: 10px 15px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.belajarbot-quick-action {
+  background: #F0F0F0;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 18px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #00a2ff;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.belajarbot-quick-action:hover {
+  background: #E0E0E0;
+}
+
+/* Input Area */
+.belajarbot-input {
+  padding: 12px 15px;
+  border-top: 1px solid #E0E0E0;
+  display: flex;
+  gap: 10px;
+}
+
+.belajarbot-input-field {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #E0E0E0;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  font-family: 'Nunito', sans-serif;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.belajarbot-input-field:focus {
+  border-color: #00a2ff;
+  box-shadow: 0 0 0 2px rgba(0, 162, 255, 0.1);
+}
+
+.belajarbot-send-button {
+  width: 40px;
+  height: 40px;
+  background: #00a2ff;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.belajarbot-send-button:hover {
+  background: #0090e0;
+  transform: translateY(-2px);
+}
+
+.belajarbot-send-button:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 576px) {
+  .belajarbot-container {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 70vh;
+    border-radius: 16px 16px 0 0;
+  }
+}
+
+/* Animations */
+.belajarbot-container {
+  animation: slide-up 0.3s ease-out;
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.belajarbot-minimized {
+  height: 60px;
+  overflow: hidden;
+}
+
+.belajarbot-minimized .belajarbot-body,
+.belajarbot-minimized .belajarbot-input,
+.belajarbot-minimized .belajarbot-quick-actions {
+  display: none;
+}

@@ -1,0 +1,90 @@
+import React, { useState } from 'react';
+import BelajarBot from './BelajarBot';
+import './belajarBot.css';
+
+interface ChatPageProps {
+  onBackClick: () => void;
+  analysisResult: any;
+}
+
+const ChatPage: React.FC<ChatPageProps> = ({ onBackClick, analysisResult }) => {
+  const [isBotMinimized, setIsBotMinimized] = useState(false);
+
+  const handleMinimizeBot = () => {
+    setIsBotMinimized(prev => !prev);
+  };
+
+  // Helper function to extract YouTube video ID
+  const getYoutubeId = (url: string): string => {
+    try {
+      const urlObj = new URL(url);
+      let id = '';
+      
+      if (urlObj.hostname.includes('youtube.com')) {
+        id = urlObj.searchParams.get('v') || '';
+      } else if (urlObj.hostname.includes('youtu.be')) {
+        id = urlObj.pathname.substring(1);
+      }
+      
+      return id;
+    } catch (e) {
+      console.error('Failed to parse YouTube URL', e);
+      return '';
+    }
+  };
+
+  return (
+    <div className="chat-page">
+      <div className="page-nav">
+        <button className="page-button secondary" onClick={onBackClick}>
+          &larr; Kembali ke Analisis
+        </button>
+      </div>
+
+      {/* Video Player Area */}
+      <div className="video-player-container">
+        <div className="video-player-placeholder">
+          <h3>{analysisResult.title || 'Konten yang dianalisis'}</h3>
+          <p>Durasi: {analysisResult.duration || 'Tidak diketahui'}</p>
+          <p>{analysisResult.viewCount ? `${analysisResult.viewCount.toLocaleString()} views` : ''}</p>
+          <div className="video-thumbnail-large">
+            {analysisResult.url && analysisResult.url.includes('youtube') ? (
+              <img 
+                src={`https://img.youtube.com/vi/${getYoutubeId(analysisResult.url)}/maxresdefault.jpg`}
+                alt={analysisResult.title}
+                onError={(e) => {
+                  // Fallback to hqdefault if maxresdefault doesn't exist
+                  const target = e.target as HTMLImageElement;
+                  if (target.src.includes('maxresdefault')) {
+                    target.src = target.src.replace('maxresdefault', 'hqdefault');
+                  }
+                }}
+              />
+            ) : (
+              <div className="video-placeholder">Video Preview</div>
+            )}
+          </div>
+        </div>
+        
+        <div className="video-transcript">
+          <h3>Transcript</h3>
+          <div className="transcript-content">
+            {analysisResult.transcript}
+          </div>
+        </div>
+      </div>
+
+      {/* BelajarBot */}
+      <div className={`belajarbot-wrapper ${isBotMinimized ? 'belajarbot-minimized' : ''}`}>
+        <BelajarBot
+          videoTitle={analysisResult.title}
+          onClose={onBackClick}
+          onMinimize={handleMinimizeBot}
+          sessionId={analysisResult.sessionId}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default ChatPage;
